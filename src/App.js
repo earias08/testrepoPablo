@@ -9,14 +9,36 @@ import Inicio from './components/pages/Inicio';
 import ListaProductos from './components/productos/ListaProductos';
 import AgregarProducto from './components/productos/AgregarProducto';
 import EditarProducto from './components/productos/EditarProducto';
+import {useState, useEffect} from 'react';
 
 function App() {
+  // declarar variables
+  const [productos, setProductos] = useState([]);
+  const URL = process.env.REACT_APP_API_URL; //process es un objeto de node para leer el env
+  
+  useEffect(() => {
+    consultarApi();
+  },[]);
+
+  const consultarApi = async() => {
+    try{
+      // codigo que ejecuto normalmente
+      const respuesta = await fetch(URL);
+      const datos = await respuesta.json();
+      // console.log(respuesta);
+      // console.log(datos);
+      setProductos(datos);
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   return (
     <Router>
       <Navigation/>
       <Routes>
         <Route exact path='/' element={<Inicio></Inicio>}></Route>
-        <Route exact path='/productos' element={<ListaProductos></ListaProductos>}></Route>
+        <Route exact path='/productos' element={<ListaProductos productos={productos}></ListaProductos>}></Route>
         <Route exact path='/productos/nuevo' element={<AgregarProducto></AgregarProducto>}></Route>
         <Route exact path='/productos/editar' element={<EditarProducto></EditarProducto>}></Route>
         <Route exact path='*' element={<Error404></Error404>}></Route> 
