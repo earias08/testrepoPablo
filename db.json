@@ -17,6 +17,42 @@
       "nombreProducto": "Medialuna",
       "precioProducto": "30",
       "categoria": "dulce"
+    },
+    {
+      "nombreProducto": "cafe",
+      "precioProducto": "50",
+      "categoria": "bebida-caliente",
+      "id": 4
+    },
+    {
+      "nombreProducto": "tostada",
+      "precioProducto": "20",
+      "categoria": "salado",
+      "id": 5
+    },
+    {
+      "nombreProducto": "tostada rellenas ",
+      "precioProducto": "45",
+      "categoria": "sandwich",
+      "id": 6
+    },
+    {
+      "nombreProducto": "tostada rellenas ",
+      "precioProducto": "45",
+      "categoria": "sandwich",
+      "id": 7
+    },
+    {
+      "nombreProducto": "te",
+      "precioProducto": "45",
+      "categoria": "bebida-caliente",
+      "id": 8
+    },
+    {
+      "nombreProducto": "te frio",
+      "precioProducto": "45",
+      "categoria": "bebida-fria",
+      "id": 9
     }
   ]
 }

@@ -22,7 +22,7 @@ function App() {
 
   const consultarApi = async() => {
     try{
-      // codigo que ejecuto normalmente
+      // codigo que ejecuto normalmente, peticion GET
       const respuesta = await fetch(URL);
       const datos = await respuesta.json();
       // console.log(respuesta);
