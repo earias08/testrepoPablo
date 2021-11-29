@@ -1,34 +1,16 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombreProducto": "Té de manzanilla",
-      "precioProducto": "40",
-      "categoria": "bebida-caliente"
-    },
-    {
-      "id": 2,
-      "nombreProducto": "Café con leche",
-      "precioProducto": "60",
-      "categoria": "bebida-caliente"
-    },
-    {
-      "nombreProducto": "Pan tostado",
-      "precioProducto": "50",
-      "categoria": "salado",
-      "id": 3
-    },
-    {
       "nombreProducto": "cafe",
       "precioProducto": "50",
       "categoria": "bebida-caliente",
-      "id": 4
+      "id": 1
     },
     {
-      "nombreProducto": "Sandwich de jamon y queso",
-      "precioProducto": "200",
-      "categoria": "sandwich",
-      "id": 5
+      "nombreProducto": "te",
+      "precioProducto": "25",
+      "categoria": "bebida-fria",
+      "id": 2
     }
   ]
 }
