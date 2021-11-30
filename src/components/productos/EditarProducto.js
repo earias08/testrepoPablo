@@ -1,8 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Form, Button, Container } from "react-bootstrap";
+import { useParams } from 'react-router-dom'; //para extraer el parametro de la ruta
+
 
 
 const EditarProducto = () => {
+    const {id} = useParams() // con las llaves extraigo directamente el valor
+    const [producto, setProducto] = useState({});
+    const URL = process.env.REACT_APP_API_URL+'/'+id;
+
+    useEffect(async()=>{
+      try{
+        // consultar un producto en particular, peticion GET
+        const respuesta = await fetch(URL)
+        if(respuesta.status === 200) {
+          const dato = respuesta.json()
+          setProducto(dato)
+      } catch(error) {
+        console.log(error)
+      }
+      }
+    }, [])
+
+
     return (
         <Container>
         <h1 className='display-3 text-center my-4'>Editar Producto</h1>

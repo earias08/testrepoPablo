@@ -23,6 +23,12 @@
       "precioProducto": "150",
       "categoria": "sandwich",
       "id": 4
+    },
+    {
+      "nombreProducto": "Licuado de banana",
+      "precioProducto": "250",
+      "categoria": "bebida-fria",
+      "id": 5
     }
   ]
 }
