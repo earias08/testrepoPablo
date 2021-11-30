@@ -11,6 +11,18 @@
       "precioProducto": "25",
       "categoria": "bebida-fria",
       "id": 2
+    },
+    {
+      "nombreProducto": "cafe",
+      "precioProducto": "30",
+      "categoria": "bebida-caliente",
+      "id": 3
+    },
+    {
+      "nombreProducto": "sandwich",
+      "precioProducto": "150",
+      "categoria": "sandwich",
+      "id": 4
     }
   ]
 }
