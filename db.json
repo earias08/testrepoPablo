@@ -23,6 +23,12 @@
       "precioProducto": "100",
       "categoria": "sandwich",
       "id": 4
+    },
+    {
+      "nombreProducto": "jamon y queso",
+      "precioProducto": "150",
+      "categoria": "sandwich",
+      "id": 5
     }
   ]
 }
