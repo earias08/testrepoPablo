@@ -1,59 +1,114 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import { useParams } from 'react-router-dom'; //para extraer el parametro de la ruta
+import { useParams } from "react-router-dom"; //para extraer el parametro de la ruta
+import Swal from "sweetalert2";
+import { campoRequerido, rangoPrecio } from "../helpers/helpers";
 
+const EditarProducto = (props) => {
+  const { id } = useParams(); // con las llaves extraigo directamente el valor
+  const [producto, setProducto] = useState({});
+  const [categoria, setCategoria] = useState("");
+  // crear variables de referencias
+  const nombreProductoRef = useRef("");
+  const precioProductoRef = useRef(0);
 
+  const URL = process.env.REACT_APP_API_URL + "/" + id;
 
-const EditarProducto = () => {
-    const {id} = useParams() // con las llaves extraigo directamente el valor
-    const [producto, setProducto] = useState({});
-    const URL = process.env.REACT_APP_API_URL+'/'+id;
+  useEffect(async () => {
+    try {
+      // consultar un producto en particular, peticion GET
+      const respuesta = await fetch(URL);
+      if (respuesta.status === 200) {
+        const dato = await respuesta.json();
+        setProducto(dato);
+        setCategoria(dato.categoria);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-    useEffect(async()=>{
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    // console.log(nombreProductoRef)
+    // console.log(nombreProductoRef.current.value)
+    // validar datos
+    if (campoRequerido(nombreProductoRef.current.value) && rangoPrecio(precioProductoRef.current.value) && campoRequerido(categoria)) {
+      // crear un objeto y enviarlo a la api
+      const productoModificado = {
+        nombreProducto: nombreProductoRef.current.value,
+        precioProducto: precioProductoRef.current.value,
+        categoria
+      }
+
       try{
-        // consultar un producto en particular, peticion GET
-        const respuesta = await fetch(URL)
-        if(respuesta.status === 200) {
-          const dato = respuesta.json()
-          setProducto(dato)
-      } catch(error) {
-        console.log(error)
-      }
-      }
-    }, [])
+        const respuesta = await fetch(URL, {
+          method: "PUT",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(productoModificado)
+        }) 
 
+        if (respuesta.status === 200) {
+          Swal.fire(
+            'Producto modificado', 'El producto fue correctamente actualizado', 'success'
+          )
+          props.consultarApi();
+        }
+      } catch(error){
+        console.log(error);
+        // mostrar msj al usuario
+      }
+    } else {
+      console.log('error al validar los campos')
+      // mostrar mensaje de error
+    }
+    
+  };
 
-    return (
-        <Container>
-        <h1 className='display-3 text-center my-4'>Editar Producto</h1>
-        <hr />
-      <Form className='my-5'>
+  return (
+    <Container>
+      <h1 className="display-3 text-center my-4">Editar Producto</h1>
+      <hr />
+      <Form className="my-5" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nombre del producto*</Form.Label>
-          <Form.Control type="text" placeholder="Ej: café" />
+          <Form.Control
+            type="text"
+            placeholder="Ej: café"
+            defaultValue={producto.nombreProducto}
+            ref={nombreProductoRef}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Precio*</Form.Label>
-          <Form.Control type="number" placeholder="ej: 50" />
+          <Form.Control
+            type="number"
+            placeholder="ej: 50"
+            defaultValue={producto.precioProducto}
+            ref={precioProductoRef}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Label>Categoria*</Form.Label>
-          <Form.Select>
-            <option>Seleccione una opcion</option>
-            <option>Bebida Caliente</option>
-            <option>Bebida Fria</option>
-            <option>Sandwich</option>
-            <option>Dulce</option>
-            <option>Salado</option>
+          <Form.Select
+            value={categoria}
+            onChange={(e) => setCategoria(e.target.value)}
+          >
+            <option value="">Seleccione una opcion</option>
+            <option value="bebida-caliente">Bebida Caliente</option>
+            <option value="bebida-fria">Bebida Fria</option>
+            <option value="sandwich">Sandwich</option>
+            <option value="dulce">Dulce</option>
+            <option value="salado">Salado</option>
           </Form.Select>
         </Form.Group>
-        <Button variant="primary" type="submit" className='w-100'>
+        <Button variant="primary" type="submit" className="w-100">
           Guardar cambios
         </Button>
       </Form>
     </Container>
-    );
+  );
 };
 
 export default EditarProducto;

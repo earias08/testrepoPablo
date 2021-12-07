@@ -2,13 +2,13 @@
   "productos": [
     {
       "nombreProducto": "cafe",
-      "precioProducto": "50",
+      "precioProducto": "1000",
       "categoria": "bebida-caliente",
       "id": 1
     },
     {
       "nombreProducto": "te",
-      "precioProducto": "25",
+      "precioProducto": "15",
       "categoria": "bebida-fria",
       "id": 2
     },
@@ -20,15 +20,9 @@
     },
     {
       "nombreProducto": "sandwich",
-      "precioProducto": "150",
+      "precioProducto": "100",
       "categoria": "sandwich",
       "id": 4
-    },
-    {
-      "nombreProducto": "Licuado de banana",
-      "precioProducto": "250",
-      "categoria": "bebida-fria",
-      "id": 5
     }
   ]
 }
