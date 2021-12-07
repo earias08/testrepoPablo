@@ -1,6 +1,5 @@
 {
   "name": "crudcafe",
-  "homepage": "https://psc88.github.io/reactCRUD_RollingCode",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
