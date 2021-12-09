@@ -28,6 +28,7 @@ const EditarProducto = (props) => {
     }
   }, []);
 
+  
   const handleSubmit = async(e) => {
     e.preventDefault();
     // console.log(nombreProductoRef)

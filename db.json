@@ -2,7 +2,7 @@
   "productos": [
     {
       "nombreProducto": "cafe",
-      "precioProducto": "1000",
+      "precioProducto": "1005",
       "categoria": "bebida-caliente",
       "id": 1
     },
